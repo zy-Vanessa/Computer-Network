@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="shortcut icon" href="favicon.ico" type="image">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>主页</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: url(image/1.png) no-repeat;
+            background-size: cover;
+        }
+
+        .box {
+            width: 1200px;
+            height: 540px;
+            background: rgba(0, 0, 0, 0.2);
+            margin: 0 auto;
+            text-align: center;
+            margin-top: 7%;
+
+        }
+
+        .box .left a {
+            display: block;
+            width: 200px;
+            height: 90px;
+            background: rgba(0, 0, 0, 0.2);
+            font-size: 20px;
+            color: #fff;
+            text-decoration: none;
+            padding-left: 30px;
+            line-height: 90px;
+            position: relative; /* 添加相对定位 */
+            z-index: 2; /* 设置一个较高的 z-index 值，使其覆盖其他元素 */
+        }
+
+        .box .left a:hover {
+            background-color: #ff6700;
+            z-index: 2; /* 设置一个更高的 z-index 值以确保覆盖其他元素 */
+        }
+
+        .left {
+            float: left;
+            width: 230px;
+            height: 540px;
+            background-color: rgb(243, 248, 248);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .right {
+            float: right;
+            width: 970px;
+            height: 540px;
+            background-color: rgba(23, 24, 24, 0.2);
+            ;
+
+        }
+
+        .right>div {
+            float: left;
+            width: 470px;
+            height: 540px;
+            background: rgba(0, 0, 0, 0.2);
+            margin-left: 14px;
+            margin-bottom: 14px;
+        }
+
+        .right .one {
+            background-color: rgba(23, 24, 24, 0.2);
+        }
+
+        .right .photo {
+            width: 490px;
+            height: 540px;
+        }
+
+        .right .one h1 {
+            color: rgb(199, 194, 194);
+            font-size: 60px;
+            line-height: 3;
+        }
+
+        .right .one p {
+            font-size: 30px;
+            font-weight: 500;
+            color: rgb(244, 250, 250);
+            font-style: italic;
+            line-height: 2;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="nav">
+        <a href="#" onclick="showImage('');showText('');playAudio('');">主页</a>
+        <a href="#" onclick="showImage('image/2.png'); showText('这是我自己设计的一个LOGO');playAudio('')">LOGO</a>
+        <a href="#" onclick="showImage('image/3.png'); showText('我的兴趣爱好是读书，听音乐，打游戏，刷b站。课余时间我喜欢打羽毛球和乒乓球。');playAudio('');">兴趣爱好</a>
+        <a href="#" id="audioLink" onclick="showImage('image/5.png');showText('');playAudio('audio/introduce.mp3');">音频自我介绍</a>
+        <a href="#" onclick="showImage('image/4.png');showText('好好学习，天天向上!');playAudio('');">总结</a>
+    </div>
+    <div class="box">
+        <div class="left">
+            <a href="#" onclick="showImage('');showText('');playAudio('');">主页</a>
+            <a href="#" onclick="showImage('image/2.png'); showText('这是我自己设计的一个LOGO');playAudio('')">LOGO</a>
+            <a href="#" onclick="showImage('image/3.png'); showText('我的兴趣爱好是读书，听音乐，打游戏，刷b站。课余时间我喜欢打羽毛球和乒乓球。');playAudio('');">兴趣爱好</a>
+            <a href="#" id="audioLink" onclick="showImage('image/5.png');showText('');playAudio('audio/introduce.mp3');">音频自我介绍</a>
+            <a href="#" onclick="showImage('image/4.png');showText('好好学习，天天向上!');playAudio('');">总结</a>
+        </div>
+        <div class="right">
+            <div class="one">
+                <h1>自我介绍</h1>
+                <p>姓名：张洋</p>
+                <p>学号：2111460</p>
+                <p>专业：信息安全</p>
+                <p>生日：2003.7.24</p>
+
+            </div>
+            <div>
+                <img src="" id="my-image" class="photo" style="width: 455px; height: 350px;border: none; outline: none; vertical-align: middle; z-index: 1;">
+                <p id="showText"></p>
+                <audio id="myAudio" controls>
+                    <source src="audio/introduce.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+            </div>
+        </div>
+    </div>
+    <script>
+        function showText(text) {
+            document.getElementById("showText").textContent = text;
+        }
+        function showImage(imageUrl) {
+            var imageElement = document.getElementById("my-image");
+            imageElement.src = imageUrl;
+        }
+        function playAudio(audioUrl) {
+            var audioLink = document.getElementById("audioLink");
+            var audio = document.getElementById("myAudio");
+
+            if (audioLink.getAttribute("data-playing") === "true") {
+                // 如果音频正在播放，暂停它
+                audioLink.setAttribute("data-playing", "false");
+                audio.pause();
+            } else {
+                // 否则，设置音频的URL并播放
+                audioLink.setAttribute("data-playing", "true");
+                audio.src = audioUrl; // 设置音频文件的URL
+                audio.play();
+            }
+        }
+    </script>
+
+
+    <style>
+        /* ... 省略其他样式 ... */
+    
+        #showText {
+            font-size: 24px; /* 设置字体大小 */
+            font-family: Arial, sans-serif; /* 设置字体族 */
+            text-align: center; /* 文本居中对齐 */
+            margin-top: 20px; /* 设置上边距 */
+            color: #faf4f4; /* 设置文本颜色 */
+        }
+        img[src=""], img:not([src]) {
+        opacity: 0;
+        }
+        audio[src=""],audio:not([src]) {
+        opacity: 0;
+        }
+    </style>
+    
+</body>
+
+</html>
